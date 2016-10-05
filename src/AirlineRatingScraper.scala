@@ -4,7 +4,7 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import scala.util.matching.Regex
 
-object RatingScraper {
+object AirlineRatingScraper {
 
   var i = 1
 
