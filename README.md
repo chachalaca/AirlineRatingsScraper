@@ -22,7 +22,7 @@ Fetches data from [flightradar24.com](http://flightradar24.com) API and outputs 
 Codeshare flights (`FR24CodeshareScraper`)
 ------------------------------------------
 
-Many physical flights use multiple flight codes, each for one cooperating carrier [(Wikipedia)](https://en.wikipedia.org/wiki/Codeshare_agreement). This script resolves marketing carrier code vs. operating carrier code. Data is scraped from flightradar24.com search API.
+Many physical flights use multiple flight codes, each for one cooperating carrier [(Wikipedia)](https://en.wikipedia.org/wiki/Codeshare_agreement). This script resolves marketing carrier code vs. operating carrier code. Data is scraped from [flightradar24.com](http://flightradar24.com) search API.
 
 Flight history (`FR24FlightsHistoryScraper`)
 --------------------------------------------
