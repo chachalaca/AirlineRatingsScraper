@@ -9,21 +9,35 @@ import play.api.libs.json._
 import scala.io.Source
 
 
-
+/**
+ * Resolves codeshare and non-codeshare flightcodes using data scraped from flightradar24.com
+ * No access tokens needed.
+ * You must provide input file with flight codes to resolve.
+ */
 object FR24CodeshareScraper {
+
+  // Input file containing flightcodes to resolve
+  val flightcodesInputFile = "flightcodes.txt"
+
+  // This file will contain operating carriers' flightcodes
+  val nonCodeshareFlightcodesOutputFile = "non_codeshare_flightcodes.txt"
+
+  // This file will contain resolution table (in csv format)
+  // || marketing carrier flightcode | operating carrier flightcode ||
+  val codeshareFlightcodesOutputFile = "codeshare_flightcodes.csv"
 
 
   def main (args: Array[String]) {
 
-    val ncffw = new FileWriter("non_codeshare_flightcodes1")
+    val ncffw = new FileWriter(nonCodeshareFlightcodesOutputFile)
 
-    val fw = new FileWriter("codeshare1.csv")
+    val fw = new FileWriter(codeshareFlightcodesOutputFile)
     fw.write("code,operating_carrier_code\n")
 
     var i = 1
 
     Source
-      .fromFile("flightcodes1.txt")
+      .fromFile(flightcodesInputFile)
       .getLines()
       .toList
       .distinct

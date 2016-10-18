@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.9.2" level="project" />
     <orderEntry type="library" name="scala-sdk-2.11.7" level="project" />
     <orderEntry type="library" name="com.typesafe.play:play-json_2.11:2.5.8" level="project" />
+    <orderEntry type="library" name="mysql:mysql-connector-java:6.0.4" level="project" />
   </component>
 </module>

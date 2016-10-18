@@ -7,8 +7,14 @@ import scala.util.matching.Regex
 import play.api.libs.json._
 
 
-
+/**
+ * Fetches airport data from flightradar24.com.
+ * No access tokens needed.
+ */
 object FR24AirportDataScraper {
+
+  // Path of the file data should be written in
+  val outputFile = "airports.csv"
 
 
   def main (args: Array[String]) {
@@ -46,7 +52,7 @@ object FR24AirportDataScraper {
         .distinct
 
 
-    val fw = new FileWriter("airports.csv")
+    val fw = new FileWriter(outputFile)
     fw.write("iata,icao,name,latitude,longitude,altitude,country,city,ratings_avg,ratings_total,reviews_count,reviews_evaluation\n")
 
     var i = 1

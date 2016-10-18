@@ -1,14 +1,26 @@
-import java.io.IOException
+import java.io.{FileWriter, IOException}
 
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import scala.util.matching.Regex
 
-object AirlineRatingScraper {
+
+/**
+ * Fetches airlines data (ratings, carrier type..) from airlineratings.com
+ * Data is saved to CSV file.
+ */
+object ARAirlineRatingScraper {
+
+  // Path of the file data should be written in
+  val outputFile = "carriers.csv"
 
   var i = 1
 
   def main(args: Array[String]) {
+
+    val fw = new FileWriter(outputFile)
+    fw.write("id,carrier_iata,carrier_name,carrier_type,safety_rating,product_rating\n")
+
 
     var container = fetchAirlineRatingPage()
 
@@ -26,13 +38,13 @@ object AirlineRatingScraper {
 
       val carrierProductRating = ratingPattern.findFirstIn(container.select("div").eq(4).text()).getOrElse("").split("\\/", 2)
 
-      println(
+      fw.write(
         i + "," +
         (if (carrierCode != "na") carrierCode else "") + "," +
         carrierName + "," +
         carrierType + "," +
         (if (carrierSafetyRating.size > 1) (carrierSafetyRating(0).toFloat / carrierSafetyRating(1).toFloat) else "") + "," +
-        (if (carrierProductRating.size > 1) (carrierProductRating(0).toFloat / carrierProductRating(1).toFloat) else "")
+        (if (carrierProductRating.size > 1) (carrierProductRating(0).toFloat / carrierProductRating(1).toFloat) else "") + "\n"
       )
 
       i += 1
@@ -40,6 +52,8 @@ object AirlineRatingScraper {
       container = fetchAirlineRatingPage()
 
     }
+
+    fw.close()
 
   }
 
